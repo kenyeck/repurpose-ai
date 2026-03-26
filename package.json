@@ -1,0 +1,9 @@
+{
+   "name": "content-repurposer-backend",
+   "version": "1.0.0",
+   "scripts": {
+      "frontend": "cd frontend && npm run dev --turbo",
+      "backend": "cd backend && npm run dev",
+      "ai": "cd ai-service/content_repurposer && uv run uvicorn content_repurposer.main:app --reload --port 8000"
+   }
+}

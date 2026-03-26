@@ -1,0 +1,32 @@
+[project]
+name = "content_repurposer"
+version = "0.1.0"
+description = "content_repurposer using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]==1.11.0",
+    "fastapi>=0.135.2",
+    "litellm>=1.82.6",
+    "uvicorn>=0.42.0",
+]
+
+[project.scripts]
+content_repurposer = "content_repurposer.main:run"
+run_crew = "content_repurposer.main:run"
+train = "content_repurposer.main:train"
+replay = "content_repurposer.main:replay"
+test = "content_repurposer.main:test"
+run_with_trigger = "content_repurposer.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.uv]
+required-environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+]
