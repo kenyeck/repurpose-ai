@@ -21,7 +21,7 @@ interface RepurposeAIResponse {
 }
 
 router.post('/', async (req, res) => {
-   const { topic = '', originalContent, platform = '' } = req.body; // Destructure any fields you expect from the frontend
+   const { topic = '', originalContent, platform = 'all' } = req.body; // Destructure any fields you expect from the frontend
    if (!originalContent) {
       return res.status(400).json({ error: 'at least originalContent is required' });
    }

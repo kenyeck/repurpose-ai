@@ -63,7 +63,7 @@ export default function Dashboard() {
 
    const handleRepurpose = async () => {
       setLoading(true);
-      setContentIn('');
+      //setContentIn('');
       setContentOut(null);
       try {
          const res = await axios.post<RepurposeRequest, RepurposeResponse>('/repurpose', {
@@ -99,12 +99,10 @@ export default function Dashboard() {
       if (section) {
          await navigator.clipboard.writeText(section.trim());
          setSectionCopied(heading);
-         setTimeout(() => setSectionCopied(null), 1500);
       } else {
          // Fallback: copy the whole result if section not found
          await navigator.clipboard.writeText(contentOut.result);
          setSectionCopied(heading);
-         setTimeout(() => setSectionCopied(null), 1500);
       }
    };
    return (
@@ -113,7 +111,7 @@ export default function Dashboard() {
             {/* Header */}
             <div className="flex justify-between items-center mb-10">
                <div>
-                  <h1 className="text-4xl font-semibold">Content Repurposer</h1>
+                  <h1 className="text-4xl font-semibold">Content Generator</h1>
                   <p className="text-zinc-400">
                      Turn one input into 10+ platform-ready assets using AI agents
                   </p>
@@ -192,7 +190,7 @@ export default function Dashboard() {
                      </>
                   ) : (
                      <>
-                        Repurpose with AI Crew
+                        Generate with AI Crew
                         <ArrowRight className="w-6 h-6" />
                      </>
                   )}
@@ -269,8 +267,8 @@ export default function Dashboard() {
                   </div>
 
                   <div className="mt-8 text-center text-xs text-zinc-500">
-                     Tip: Click &quot;Copy Section&quot; on any heading to quickly grab that platform’s
-                     content
+                     Tip: Click &quot;Copy Section&quot; on any heading to quickly grab that
+                     platform’s content
                   </div>
                </div>
             )}{' '}

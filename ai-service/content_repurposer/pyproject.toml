@@ -1,32 +1,33 @@
 [project]
-name = "content_repurposer"
-version = "0.1.0"
-description = "content_repurposer using crewAI"
-authors = [{ name = "Your Name", email = "you@example.com" }]
-requires-python = ">=3.10,<3.14"
+authors = [{name = "Ken Yeck", email = "ken.yeck@gmail.com"}]
 dependencies = [
-    "crewai[tools]==1.11.0",
-    "fastapi>=0.135.2",
-    "litellm>=1.82.6",
-    "uvicorn>=0.42.0",
+  "crewai[tools]==1.11.0",
+  "crewai-tools>=0.15.0",
+  "fastapi>=0.135.2",
+  "litellm>=1.82.6",
+  "uvicorn>=0.42.0",
 ]
+description = "content_repurposer using crewAI"
+name = "content_repurposer"
+requires-python = ">=3.10,<3.14"
+version = "0.1.0"
 
 [project.scripts]
 content_repurposer = "content_repurposer.main:run"
-run_crew = "content_repurposer.main:run"
-train = "content_repurposer.main:train"
 replay = "content_repurposer.main:replay"
-test = "content_repurposer.main:test"
+run_crew = "content_repurposer.main:run"
 run_with_trigger = "content_repurposer.main:run_with_trigger"
+test = "content_repurposer.main:test"
+train = "content_repurposer.main:train"
 
 [build-system]
-requires = ["hatchling"]
 build-backend = "hatchling.build"
+requires = ["hatchling"]
 
 [tool.crewai]
 type = "crew"
 
 [tool.uv]
 required-environments = [
-    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+  "sys_platform == 'win32' and platform_machine == 'AMD64'",
 ]

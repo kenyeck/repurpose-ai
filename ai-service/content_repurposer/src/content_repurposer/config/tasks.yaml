@@ -1,17 +1,174 @@
 research_task:
-  description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
-  expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+   description: >
+      Research the latest, most relevant information about the following topic
+      and any content the user has provided. Your job is to find what is actually
+      happening right now — today, this week, this month.
 
-reporting_task:
-  description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
-  expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+      Topic: {topic}
+      User-provided content (if any): {original_content}
+      Current year context: {current_year}
+
+      Use your search tools to find:
+      - Breaking news, recent events, or announcements directly tied to this topic
+      - The latest statistics, studies, or data (prioritize sources from the last
+        6-12 months)
+      - Trending angles, debates, or cultural moments happening around this topic
+      - Real human impact: Who is affected? How? Why does this matter to people's
+        daily lives right now or in the very near future?
+      - At least 3-5 concrete, verifiable facts or data points
+      - Surprising, counterintuitive, or emotionally resonant findings
+
+      Be specific. Avoid vague generalities. Cite sources where possible.
+   expected_output: >
+      A structured research brief in markdown using these exact ### subheadings:
+
+      ### What's Happening Right Now
+      [2-3 paragraphs summarizing the most current, newsworthy developments]
+
+      ### Key Facts & Data Points
+      - Fact/stat 1 (with source or context)
+      - Fact/stat 2
+      (at least 5 concrete facts or statistics)
+
+      ### Trending Angles & Debates
+      [2-3 bullet points on the most discussed or contested aspects of this topic]
+
+      ### Real Human Impact
+      [Who is affected and how — make it personal and specific]
+
+      ### Surprising or Counterintuitive Findings
+      [1-3 findings that challenge assumptions or would genuinely surprise people]
+
+      ### Source References
+      [List any URLs, publications, or named sources used]
+   agent: research_analyst
+
+strategy_task:
+   description: >
+      You have received fresh research about the topic. Now build a content
+      strategy that will drive the creation of genuinely new, compelling content.
+
+      Topic: {topic}
+      User-provided content or context (if any): {original_content}
+
+      Using the research brief above, identify:
+      - The single most powerful angle for content right now (the "lead")
+      - The core message — one sentence that is the heartbeat of all content
+      - The emotional hook: fear, hope, curiosity, outrage, aspiration, or relief?
+      - The audience: who specifically needs to hear this right now, and why?
+      - 3-5 content themes to explore across platforms
+      - The top 5 most shareable/quotable ideas drawn from the research
+      - Specific calls to action appropriate for this topic and moment
+      - Tone guidance: urgent, optimistic, cautionary, empowering, provocative?
+   expected_output: >
+      A content strategy brief in markdown using these exact ### subheadings:
+
+      ### The Lead Angle
+      [The single strongest hook — the "story within the story" worth telling now]
+
+      ### Core Message
+      [One sentence that must survive every piece of content]
+
+      ### Emotional Hook
+      [The primary feeling you want to trigger and why it fits this topic]
+
+      ### Target Audience
+      [Specific description — job, situation, concern, aspiration]
+
+      ### Content Themes
+      - Theme 1
+      - Theme 2
+      (3-5 themes with a one-sentence rationale each)
+
+      ### Top Shareable Ideas
+      1. "Idea or quote one"
+      2. "Idea or quote two"
+      (numbered list of 5 — drawn directly from the research)
+
+      ### Calls to Action
+      [2-3 specific, relevant CTAs matched to the topic and moment]
+
+      ### Tone & Voice Guidance
+      [How to write: be specific — e.g., "Conversational urgency — like a friend
+      texting you something you absolutely need to know"]
+   agent: content_strategist
+
+content_creation_task:
+   description: >
+      You have a research brief and a content strategy. Now write original,
+      platform-native content for: {platform}
+
+      If platform is "all", create content for ALL platforms listed below.
+      If a specific platform is named, create content only for that one.
+
+      This is NOT repurposing — this is brand-new content creation grounded
+      in real research and a clear strategy. Every word must earn its place.
+      Use the specific facts, data, and angles from the research. Make it feel
+      like it was written today, for people living their lives right now.
+
+      Platform formats & standards:
+      - Twitter/X: A thread of 5-7 tweets. The first tweet is a scroll-stopper
+        — bold, specific, and unexpected. Each tweet under 280 characters.
+        the format `1.` with a space (no period), e.g. `1. Your tweet text here`.
+        Weave in a key stat or fact from the research. End the thread with a
+        strong CTA or thought-provoking question. Each tweet on its own line.
+      - LinkedIn: A 200-300 word professional post. Open with a single-sentence
+        hook that makes someone stop mid-scroll. Build with insight from the
+        research. Write like a real person, not a press release. End with a
+        clear call to action or discussion question. Use line breaks generously.
+      - Instagram: A caption of 120-180 words with a strong visual hook in the
+        first line. Make the body personal, specific, and human. Close with a
+        question to drive comments. Follow with 12-15 tightly relevant hashtags
+        on a separate line.
+      - Blog/Newsletter: A 250-300 word intro section with a compelling subject
+        line suggestion. Open with a provocative question or striking stat. Build
+        context with 2-3 short paragraphs using the research findings. End with a
+        preview of what follows to keep people reading.
+      - YouTube: A short description (300-400 characters) for a video thumbnail
+        description, plus a 3-4 sentence expanded intro for the video description
+        section on YouTube. Start with a hook question or stat. Make it binge-worthy.
+        Include a clear CTA telling viewers what to watch for or what they'll learn.
+
+      Rules for every piece: Use specific facts from the research (not vague
+      claims). Write with the emotional hook from the strategy. Match the tone
+      guidance exactly. Use emojis where culturally appropriate for the platform.
+   expected_output: >
+      Platform content clearly separated by section headers. Each section must include:
+      - A ### header with the platform name (e.g., ### Twitter/X Thread)
+      - The complete, original, ready-to-post content formatted for that platform
+      - At least one specific fact, stat, or detail drawn from the research
+      Do NOT summarize or skip any requested platform. Include all platforms if
+      "all" was specified.
+   agent: content_creator
+
+compile_task:
+   description: >
+      Compile the research brief, content strategy, and all platform-specific
+      content into a single clean structured markdown document using exactly
+      this structure:
+
+      # Content Report
+
+      ## Research Brief
+      [Copy the full research brief here — all ### subheadings and their content]
+
+      ## Content Strategy
+      [Copy the full strategy brief here — all ### subheadings and their content]
+
+      ## Ready-to-Post Content
+      [Copy every platform section here verbatim — each ### platform header and
+      all its content. Do NOT summarize, shorten, or omit any platform section.]
+
+      ## Strategic Recommendations
+      [3-5 actionable next steps as a numbered list — specific to this topic,
+      this moment, and this audience]
+
+      IMPORTANT: Every section above MUST be fully populated with actual content.
+      Never write a placeholder or leave a section empty.
+   expected_output: >
+      A complete, publication-ready markdown document with all four sections
+      fully populated. Preserve all markdown formatting exactly as received —
+      including ### subheadings, numbered lists, bullet points, and tweet
+      numbering format. Do not collapse lists into prose. Formatted as clean
+      markdown without ``` code fences wrapping the entire document.
+   agent: report_compiler

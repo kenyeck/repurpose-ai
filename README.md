@@ -1,4 +1,4 @@
-# Repurpose AI
+# Generate AI
 
 ## Overview
 

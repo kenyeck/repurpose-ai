@@ -21,8 +21,8 @@ export default function Home() {
                </h1>
 
                <p className="text-2xl text-zinc-400 max-w-2xl mx-auto mb-10">
-                  Repurposer AI instantly transforms blogs, videos, podcasts, and LinkedIn posts
-                  into perfectly optimized content for Twitter, LinkedIn, Instagram, YouTube,
+                  Generator AI instantly transforms blogs, videos, podcasts, and LinkedIn posts into
+                  perfectly optimized content for Twitter, LinkedIn, Instagram, YouTube,
                   newsletters, and more — all powered by a 3-agent AI crew.
                </p>
 
